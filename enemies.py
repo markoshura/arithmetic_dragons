@@ -82,6 +82,12 @@ class Troll(Enemy):
 
     def check_answer(self, answer):
         return answer == self.__answer
+    
+    def check_prostota(self,n):
+        for i in range(2,n//2):
+            if (n%i)==0:
+                return 'No'
+        return 'Yes'
 
 class Troll1(Troll):
 
@@ -105,20 +111,10 @@ class Troll2(Troll):
 
     def question(self):
         x = randint(1,100)
-        self.__quest='Э, число ' + str(x) + ' простой, дэ?'
-        delitel=2
-        while delitel**2<x:
-            if x%delitel==0:
-                bull=0
-            delitel+=1
-        if delitel**2>=x:
-            bull=1
-        if bull==1:
-            self.set_answer('Нет')
-        else:
-            self.set_answer('Да')
-
+        self.__quest = 'число '+str(x)+' простое, дээээ???'
+        self.set_answer(self.check_prostota(x))
         return self.__quest
+        
 
 
 class Troll3(Troll):
